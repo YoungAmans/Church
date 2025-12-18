@@ -17,7 +17,7 @@ export default function LocationSection() {
             Find Us
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Visit Grace Community Church this Sunday. We're easy to find.
+            Visit Hope Church this Sunday. We're easy to find.
           </p>
         </div>
 

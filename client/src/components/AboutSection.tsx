@@ -17,18 +17,26 @@ export default function AboutSection() {
               className="font-serif text-3xl md:text-4xl font-semibold text-foreground mb-6"
               data-testid="text-about-title"
             >
-              Welcome to Grace Community Church
+              Welcome to Hope Church
             </h2>
+            
+            <div className="mb-8 p-6 bg-primary/5 rounded-lg border border-primary/20">
+              <h3 className="font-semibold text-foreground mb-3">Our Vision</h3>
+              <p className="text-muted-foreground mb-4">To fulfill the great commission (Matthew 28:19-20)</p>
+              
+              <h3 className="font-semibold text-foreground mb-3">Our Mission</h3>
+              <p className="text-muted-foreground font-medium">Love Neighbours • Make Disciples • Plant Churches</p>
+            </div>
+
             <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              For over 25 years, we've been a place where people from all walks of life 
-              come together to worship, grow, and serve. Our doors are open to everyone 
-              seeking hope, purpose, and genuine community.
+              At Hope Church, we're committed to living out Jesus' great commission every day. 
+              We're a community devoted to loving our neighbors, making disciples, and planting 
+              churches that transform lives and communities.
             </p>
-            <p className="text-muted-foreground mb-8 leading-relaxed">
-              Whether you're exploring faith for the first time or looking for a new 
-              church home, you'll find a warm welcome here. We believe in the 
-              transforming power of love, the importance of community, and living 
-              out our faith through service to others.
+            <p className="text-muted-foreground leading-relaxed">
+              Whether you're exploring faith for the first time or looking for a church home, 
+              you'll find a warm welcome here. We believe in the transforming power of love, 
+              the importance of discipleship, and living out our faith through service to others.
             </p>
 
             <div className="grid grid-cols-3 gap-4">

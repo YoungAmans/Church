@@ -24,13 +24,14 @@ export default function HeroSection() {
           className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight"
           data-testid="text-hero-title"
         >
-          Welcome Home
+          Hope Church
         </h1>
         <p 
           className="text-lg sm:text-xl md:text-2xl text-white/90 mb-10 max-w-2xl mx-auto leading-relaxed"
           data-testid="text-hero-subtitle"
         >
-          A place where faith grows, community flourishes, and everyone belongs.
+          Vision: To fulfill the great commission<br />
+          <span className="text-base sm:text-lg">Love Neighbours • Make Disciples • Plant Churches</span>
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Button 

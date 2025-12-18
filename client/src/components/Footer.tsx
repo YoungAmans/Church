@@ -45,11 +45,13 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           <div className="lg:col-span-1">
             <h3 className="font-serif text-xl font-bold text-foreground mb-4">
-              Grace Community Church
+              Hope Church
             </h3>
+            <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+              Vision: To fulfill the great commission
+            </p>
             <p className="text-muted-foreground text-sm leading-relaxed">
-              A welcoming community where faith grows, hearts are transformed, 
-              and everyone belongs. Join us on the journey.
+              Mission: Love Neighbours • Make Disciples • Plant Churches
             </p>
           </div>
 
@@ -127,7 +129,7 @@ export default function Footer() {
         <Separator className="my-8" />
 
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} Grace Community Church. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Hope Church. All rights reserved.</p>
           <div className="flex items-center gap-4">
             <button className="hover:text-foreground transition-colors" data-testid="link-privacy">
               Privacy Policy

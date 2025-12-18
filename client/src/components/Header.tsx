@@ -37,7 +37,7 @@ export default function Header({ isDark = false, onToggleTheme }: HeaderProps) {
             className="font-serif text-xl font-bold text-foreground"
             data-testid="link-logo"
           >
-            Grace Community
+            Hope Church
           </a>
 
           <nav className="hidden md:flex items-center gap-1">
