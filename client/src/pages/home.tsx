@@ -4,6 +4,7 @@ import AboutSection from "@/components/AboutSection";
 import ServiceTimesSection from "@/components/ServiceTimesSection";
 import MinistriesSection from "@/components/MinistriesSection";
 import EventsSection from "@/components/EventsSection";
+import LocationSection from "@/components/LocationSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import { useState, useEffect } from "react";
@@ -39,6 +40,7 @@ export default function Home() {
         <ServiceTimesSection />
         <MinistriesSection />
         <EventsSection />
+        <LocationSection />
         <ContactSection />
       </main>
       <Footer />
