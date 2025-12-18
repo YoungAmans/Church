@@ -34,10 +34,15 @@ export default function Header({ isDark = false, onToggleTheme }: HeaderProps) {
         <div className="flex items-center justify-between gap-4 h-16">
           <a 
             href="#" 
-            className="font-serif text-xl font-bold text-foreground"
+            className="flex items-center gap-2"
             data-testid="link-logo"
           >
-            Hope Church
+            <img 
+              src="/attached_assets/image_1766089300335.png" 
+              alt="Hope Church Logo" 
+              className="h-10 w-10 rounded-full"
+            />
+            <span className="font-serif text-lg font-bold text-foreground hidden sm:inline">Hope Church</span>
           </a>
 
           <nav className="hidden md:flex items-center gap-1">
