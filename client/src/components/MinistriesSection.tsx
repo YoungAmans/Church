@@ -33,6 +33,16 @@ const ministries = [
     description: "Connect with others in intimate group settings.",
     image: groupsImage,
   },
+  {
+    name: "Lifegroups",
+    description: "Deep faith journeys in small communities focused on discipleship.",
+    image: groupsImage,
+  },
+  {
+    name: "Shepherding",
+    description: "Pastoral care and spiritual guidance for your growth journey.",
+    image: worshipImage,
+  },
 ];
 
 export default function MinistriesSection() {
