@@ -13,8 +13,8 @@ const quickLinks = [
 ];
 
 const serviceTimes = [
-  { day: "Sunday", times: ["9:00 AM", "11:00 AM"] },
-  { day: "Wednesday", times: ["7:00 PM"] },
+  { day: "Mon - Sat", times: ["9:00 AM - 6:00 PM"] },
+  { day: "Sunday", times: ["9:30 AM - 12:00 PM", "3:30 PM - 6:00 PM"] },
 ];
 
 export default function Footer() {
@@ -45,7 +45,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           <div className="lg:col-span-1">
             <h3 className="font-serif text-xl font-bold text-foreground mb-4">
-              Hope Church
+              Hope Philippines Church
             </h3>
             <p className="text-muted-foreground text-sm leading-relaxed mb-4">
               Vision: To fulfill the great commission
@@ -129,7 +129,7 @@ export default function Footer() {
         <Separator className="my-8" />
 
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} Hope Church. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Hope Philippines Church. All rights reserved.</p>
           <div className="flex items-center gap-4">
             <button className="hover:text-foreground transition-colors" data-testid="link-privacy">
               Privacy Policy

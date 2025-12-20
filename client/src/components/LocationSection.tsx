@@ -1,8 +1,8 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Phone, Mail } from "lucide-react";
 
-const churchAddress = "123 Faith Street, Springfield, CA 90210";
-const googleMapsUrl = "https://maps.google.com/?q=123+Faith+Street,+Springfield,+CA+90210";
+const churchAddress = "127 H. Lozada St., Balong Bato, San Juan City, Quezon City, Philippines";
+const googleMapsUrl = "https://maps.google.com/?q=127+H.+Lozada+St.,+Balong+Bato,+San+Juan+City,+Quezon+City,+Philippines";
 const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(googleMapsUrl)}`;
 
 export default function LocationSection() {
@@ -17,7 +17,7 @@ export default function LocationSection() {
             Find Us
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Visit Hope Church this Sunday. We're easy to find.
+            Visit Hope Philippines Church this Sunday. We're easy to find.
           </p>
         </div>
 
@@ -43,11 +43,11 @@ export default function LocationSection() {
                     <div>
                       <h3 className="font-semibold text-foreground mb-2">Phone</h3>
                       <a 
-                        href="tel:(555)123-4567" 
+                        href="tel:287051553" 
                         className="text-muted-foreground hover:text-foreground transition-colors"
                         data-testid="link-phone"
                       >
-                        (555) 123-4567
+                        287-0515-53
                       </a>
                     </div>
                   </div>

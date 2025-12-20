@@ -116,8 +116,9 @@ export default function ContactSection() {
                 <div>
                   <h3 className="font-semibold text-foreground mb-1">Address</h3>
                   <p className="text-muted-foreground">
-                    123 Faith Street<br />
-                    Springfield, CA 90210
+                    127 H. Lozada St.<br />
+                    Balong Bato, San Juan City<br />
+                    Quezon City, Philippines
                   </p>
                 </div>
               </div>
@@ -128,7 +129,7 @@ export default function ContactSection() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground mb-1">Phone</h3>
-                  <p className="text-muted-foreground">(555) 123-4567</p>
+                  <p className="text-muted-foreground">287-0515-53</p>
                 </div>
               </div>
 

@@ -4,28 +4,28 @@ import { Clock, Users, Music, Heart } from "lucide-react";
 
 const services = [
   {
-    name: "Traditional Service",
-    time: "9:00 AM",
-    day: "Sunday",
-    description: "A classic worship experience with hymns, choir, and traditional liturgy.",
-    icon: BookOpen,
-    audience: "All ages welcome",
+    name: "Monday - Saturday",
+    time: "9:00 AM - 6:00 PM",
+    day: "Weekdays",
+    description: "Church office and fellowship hours. Visit us during these times.",
+    icon: Clock,
+    audience: "All welcome",
   },
   {
-    name: "Contemporary Service", 
-    time: "11:00 AM",
+    name: "Sunday Morning Service", 
+    time: "9:30 AM - 12:00 PM",
     day: "Sunday",
-    description: "Modern worship with live band, engaging messages, and a casual atmosphere.",
+    description: "Join us for worship, prayer, and community fellowship.",
     icon: Music,
     audience: "All ages welcome",
   },
   {
-    name: "Wednesday Night",
-    time: "7:00 PM", 
-    day: "Wednesday",
-    description: "Midweek gathering for prayer, Bible study, and fellowship.",
+    name: "Sunday Afternoon Service",
+    time: "3:30 PM - 6:00 PM", 
+    day: "Sunday",
+    description: "Evening worship service with teaching and fellowship.",
     icon: Heart,
-    audience: "Adults & youth",
+    audience: "All ages welcome",
   },
 ];
 
@@ -40,11 +40,12 @@ export default function ServiceTimesSection() {
             className="font-serif text-3xl md:text-4xl font-semibold text-foreground mb-4"
             data-testid="text-services-title"
           >
-            Join Us for Worship
+            Service Hours
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            We offer multiple services throughout the week to fit your schedule and worship style.
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-2">
+            Join us for worship and fellowship.
           </p>
+          <p className="text-base text-secondary font-semibold">Opening Soon</p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">

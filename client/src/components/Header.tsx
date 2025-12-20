@@ -37,7 +37,7 @@ export default function Header({ isDark = false, onToggleTheme }: HeaderProps) {
             className="flex items-center gap-2"
             data-testid="link-logo"
           >
-            <span className="font-serif text-lg font-bold gradient-text">Hope Church</span>
+            <span className="font-serif text-lg font-bold gradient-text">Hope Philippines Church</span>
           </a>
 
           <nav className="hidden md:flex items-center gap-1">
