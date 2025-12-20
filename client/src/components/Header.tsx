@@ -46,6 +46,7 @@ export default function Header({ isDark = false, onToggleTheme }: HeaderProps) {
                 key={link.label}
                 variant="ghost"
                 onClick={() => handleNavClick(link.href)}
+                className="transition-colors duration-200"
                 data-testid={`link-nav-${link.label.toLowerCase()}`}
               >
                 {link.label}
