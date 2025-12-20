@@ -29,7 +29,7 @@ const ministries = [
     image: outreachImage,
   },
   {
-    name: "Small Groups",
+    name: "Life Groups",
     description: "Connect with others in intimate group settings.",
     image: groupsImage,
   },
