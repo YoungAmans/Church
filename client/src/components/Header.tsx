@@ -38,7 +38,7 @@ export default function Header({ isDark = false, onToggleTheme }: HeaderProps) {
             data-testid="link-logo"
           >
             <img 
-              src="/attached_assets/HOPE_PNG_1766100381886.png" 
+              src="/attached_assets/mafia_icon_(1)_1766190780904.ico" 
               alt="Hope Church Logo" 
               className="h-10 w-10"
             />
