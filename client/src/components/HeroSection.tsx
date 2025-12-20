@@ -21,7 +21,7 @@ export default function HeroSection() {
 
       <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
         <h1 
-          className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold gradient-text mb-6 leading-tight"
+          className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight"
           data-testid="text-hero-title"
         >
           Hope Church
