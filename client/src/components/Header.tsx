@@ -29,7 +29,7 @@ export default function Header({ isDark = false, onToggleTheme }: HeaderProps) {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-secondary/30 border-b-2">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center justify-between gap-4 h-16">
           <a 
@@ -37,12 +37,7 @@ export default function Header({ isDark = false, onToggleTheme }: HeaderProps) {
             className="flex items-center gap-2"
             data-testid="link-logo"
           >
-            <img 
-              src="/attached_assets/HOPE_PNG_1766190880035.png" 
-              alt="Hope Church Logo" 
-              className="h-10 w-auto"
-            />
-            <span className="font-serif text-lg font-bold text-foreground hidden sm:inline">Hope Church</span>
+            <span className="font-serif text-lg font-bold text-secondary">Hope Church</span>
           </a>
 
           <nav className="hidden md:flex items-center gap-1">
