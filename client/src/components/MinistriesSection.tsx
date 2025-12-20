@@ -29,11 +29,6 @@ const ministries = [
     image: outreachImage,
   },
   {
-    name: "Life Groups",
-    description: "Connect with others in intimate group settings.",
-    image: groupsImage,
-  },
-  {
     name: "Lifegroups",
     description: "Deep faith journeys in small communities focused on discipleship.",
     image: groupsImage,
