@@ -38,9 +38,9 @@ export default function Header({ isDark = false, onToggleTheme }: HeaderProps) {
             data-testid="link-logo"
           >
             <img 
-              src="/attached_assets/image_1766089300335.png" 
+              src="/attached_assets/HOPE_PNG_1766100381886.png" 
               alt="Hope Church Logo" 
-              className="h-10 w-10 rounded-full"
+              className="h-10 w-10"
             />
             <span className="font-serif text-lg font-bold text-foreground hidden sm:inline">Hope Church</span>
           </a>
