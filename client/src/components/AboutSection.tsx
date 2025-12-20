@@ -20,7 +20,7 @@ export default function AboutSection() {
               Welcome to Hope Church
             </h2>
             
-            <div className="mb-8 p-6 bg-primary/5 rounded-lg border border-primary/20">
+            <div className="mb-8 p-6 bg-secondary/5 rounded-lg border border-secondary/20">
               <h3 className="font-semibold text-foreground mb-3">Our Vision</h3>
               <p className="text-muted-foreground mb-4">To fulfill the great commission (Matthew 28:19-20)</p>
               
@@ -46,7 +46,7 @@ export default function AboutSection() {
                   className="text-center p-4"
                   data-testid={`stat-${stat.label.toLowerCase().replace(/\s+/g, '-')}`}
                 >
-                  <stat.icon className="w-6 h-6 mx-auto mb-2 text-primary" />
+                  <stat.icon className="w-6 h-6 mx-auto mb-2 text-secondary" />
                   <div className="text-2xl font-bold text-foreground">{stat.value}</div>
                   <div className="text-sm text-muted-foreground">{stat.label}</div>
                 </div>

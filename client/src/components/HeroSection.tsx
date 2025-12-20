@@ -36,7 +36,7 @@ export default function HeroSection() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Button 
             size="lg" 
-            className="bg-white/20 backdrop-blur-md border border-white/30 text-white px-8"
+            className="bg-primary hover:bg-primary/90 text-white px-8"
             data-testid="button-join-us"
           >
             Join Us This Sunday

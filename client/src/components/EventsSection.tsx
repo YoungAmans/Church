@@ -64,8 +64,8 @@ export default function EventsSection() {
             >
               <CardContent className="p-6">
                 <div className="flex flex-col sm:flex-row sm:items-start gap-4">
-                  <div className="flex-shrink-0 w-16 h-16 bg-primary/10 rounded-lg flex flex-col items-center justify-center">
-                    <Calendar className="w-6 h-6 text-primary" />
+                  <div className="flex-shrink-0 w-16 h-16 bg-secondary/10 rounded-lg flex flex-col items-center justify-center">
+                    <Calendar className="w-6 h-6 text-secondary" />
                   </div>
                   <div className="flex-1">
                     <div className="flex flex-wrap items-start justify-between gap-2 mb-2">

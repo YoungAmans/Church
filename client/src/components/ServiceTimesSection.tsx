@@ -56,8 +56,8 @@ export default function ServiceTimesSection() {
             >
               <CardContent className="p-6">
                 <div className="flex items-start gap-4 mb-4">
-                  <div className="p-3 rounded-lg bg-primary/10">
-                    <service.icon className="w-6 h-6 text-primary" />
+                  <div className="p-3 rounded-lg bg-secondary/10">
+                    <service.icon className="w-6 h-6 text-secondary" />
                   </div>
                   <div>
                     <h3 className="font-semibold text-lg text-foreground">{service.name}</h3>

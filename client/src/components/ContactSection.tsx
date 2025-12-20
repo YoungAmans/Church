@@ -110,8 +110,8 @@ export default function ContactSection() {
           <div className="space-y-6">
             <div className="space-y-4">
               <div className="flex items-start gap-4">
-                <div className="p-3 rounded-lg bg-primary/10 flex-shrink-0">
-                  <MapPin className="w-5 h-5 text-primary" />
+                <div className="p-3 rounded-lg bg-secondary/10 flex-shrink-0">
+                  <MapPin className="w-5 h-5 text-secondary" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground mb-1">Address</h3>
@@ -123,8 +123,8 @@ export default function ContactSection() {
               </div>
 
               <div className="flex items-start gap-4">
-                <div className="p-3 rounded-lg bg-primary/10 flex-shrink-0">
-                  <Phone className="w-5 h-5 text-primary" />
+                <div className="p-3 rounded-lg bg-secondary/10 flex-shrink-0">
+                  <Phone className="w-5 h-5 text-secondary" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground mb-1">Phone</h3>
@@ -133,8 +133,8 @@ export default function ContactSection() {
               </div>
 
               <div className="flex items-start gap-4">
-                <div className="p-3 rounded-lg bg-primary/10 flex-shrink-0">
-                  <Mail className="w-5 h-5 text-primary" />
+                <div className="p-3 rounded-lg bg-secondary/10 flex-shrink-0">
+                  <Mail className="w-5 h-5 text-secondary" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground mb-1">Email</h3>
@@ -143,8 +143,8 @@ export default function ContactSection() {
               </div>
 
               <div className="flex items-start gap-4">
-                <div className="p-3 rounded-lg bg-primary/10 flex-shrink-0">
-                  <Clock className="w-5 h-5 text-primary" />
+                <div className="p-3 rounded-lg bg-secondary/10 flex-shrink-0">
+                  <Clock className="w-5 h-5 text-secondary" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground mb-1">Office Hours</h3>
@@ -156,9 +156,9 @@ export default function ContactSection() {
               </div>
             </div>
 
-            <Card className="overflow-visible bg-primary/5 border-primary/20">
+            <Card className="overflow-visible bg-secondary/5 border-secondary/20">
               <CardContent className="p-6 flex items-start gap-4">
-                <Heart className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                <Heart className="w-6 h-6 text-secondary flex-shrink-0 mt-1" />
                 <div>
                   <h3 className="font-semibold text-foreground mb-2">Need Prayer?</h3>
                   <p className="text-muted-foreground text-sm mb-3">
