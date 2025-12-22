@@ -6,6 +6,7 @@ import MinistriesSection from "@/components/MinistriesSection";
 import EventsSection from "@/components/EventsSection";
 import LocationSection from "@/components/LocationSection";
 import ContactSection from "@/components/ContactSection";
+import AppDownloadSection from "@/components/AppDownloadSection";
 import Footer from "@/components/Footer";
 import { useState, useEffect } from "react";
 
@@ -42,6 +43,7 @@ export default function Home() {
         <EventsSection />
         <LocationSection />
         <ContactSection />
+        <AppDownloadSection />
       </main>
       <Footer />
     </div>
