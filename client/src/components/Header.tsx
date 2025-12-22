@@ -37,12 +37,6 @@ export default function Header({ isDark = false, onToggleTheme }: HeaderProps) {
             className="flex items-center gap-3"
             data-testid="link-logo"
           >
-            <img 
-              src="/church-favicon.ico" 
-              alt="Hope Philippines Church" 
-              className="w-8 h-8 rounded-md"
-              data-testid="img-logo-icon"
-            />
           </a>
 
           <nav className="hidden md:flex items-center gap-1">
