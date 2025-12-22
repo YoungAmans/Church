@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
+import AnnouncementSection from "@/components/AnnouncementSection";
 import AboutSection from "@/components/AboutSection";
 import ServiceTimesSection from "@/components/ServiceTimesSection";
 import MinistriesSection from "@/components/MinistriesSection";
@@ -37,6 +38,7 @@ export default function Home() {
       <Header isDark={isDark} onToggleTheme={toggleTheme} />
       <main>
         <HeroSection />
+        <AnnouncementSection />
         <AboutSection />
         <ServiceTimesSection />
         <MinistriesSection />
