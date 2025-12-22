@@ -20,7 +20,7 @@ export default function AnnouncementSection() {
               <iframe
                 width="100%"
                 height="100%"
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                src="https://www.youtube.com/embed/2CiMBKAeQzY"
                 title="Hope Church Philippines Announcement"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
