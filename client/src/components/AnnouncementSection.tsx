@@ -182,10 +182,10 @@ export default function AnnouncementSection() {
             {/* Previous Button */}
             <Button
               size="icon"
-              variant="outline"
+              variant="default"
               onClick={goToPrevious}
               data-testid="button-previous-announcement"
-              className="h-96 w-16 rounded-lg border-secondary/30 hover:bg-secondary/10 flex-shrink-0 hidden md:flex"
+              className="h-96 w-16 rounded-lg bg-secondary hover:bg-secondary/90 text-secondary-foreground flex-shrink-0 hidden md:flex"
             >
               <ChevronLeft className="w-8 h-8" />
             </Button>
@@ -279,10 +279,10 @@ export default function AnnouncementSection() {
             {/* Next Button */}
             <Button
               size="icon"
-              variant="outline"
+              variant="default"
               onClick={goToNext}
               data-testid="button-next-announcement"
-              className="h-96 w-16 rounded-lg border-secondary/30 hover:bg-secondary/10 flex-shrink-0 hidden md:flex"
+              className="h-96 w-16 rounded-lg bg-secondary hover:bg-secondary/90 text-secondary-foreground flex-shrink-0 hidden md:flex"
             >
               <ChevronRight className="w-8 h-8" />
             </Button>
@@ -292,10 +292,10 @@ export default function AnnouncementSection() {
           <div className="flex items-center justify-center gap-4 mb-8 md:hidden">
             <Button
               size="icon"
-              variant="outline"
+              variant="default"
               onClick={goToPrevious}
               data-testid="button-previous-announcement-mobile"
-              className="h-11 w-11 rounded-full border-secondary/30 hover:bg-secondary/10"
+              className="h-11 w-11 rounded-full bg-secondary hover:bg-secondary/90 text-secondary-foreground"
             >
               <ChevronLeft className="w-5 h-5" />
             </Button>
@@ -319,10 +319,10 @@ export default function AnnouncementSection() {
 
             <Button
               size="icon"
-              variant="outline"
+              variant="default"
               onClick={goToNext}
               data-testid="button-next-announcement-mobile"
-              className="h-11 w-11 rounded-full border-secondary/30 hover:bg-secondary/10"
+              className="h-11 w-11 rounded-full bg-secondary hover:bg-secondary/90 text-secondary-foreground"
             >
               <ChevronRight className="w-5 h-5" />
             </Button>
