@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight, Play, FileText, Image } from "lucide-react";
+import { ChevronLeft, ChevronRight, Play, FileText, Image, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroImage from "@assets/generated_images/church_community_gathering.png";
 import communityImage from "@assets/generated_images/two_people_sharing_biblical_learnings_with_bible.png";
@@ -62,37 +62,172 @@ const announcements: Announcement[] = [
 
 export default function AnnouncementSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [autoPlay, setAutoPlay] = useState(true);
-
-  useEffect(() => {
-    if (!autoPlay) return;
-
-    const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % announcements.length);
-    }, 5000);
-
-    return () => clearInterval(timer);
-  }, [autoPlay]);
+  const [isTheaterMode, setIsTheaterMode] = useState(false);
 
   const goToPrevious = () => {
-    setAutoPlay(false);
     setCurrentIndex((prev) =>
       prev === 0 ? announcements.length - 1 : prev - 1
     );
   };
 
   const goToNext = () => {
-    setAutoPlay(false);
     setCurrentIndex((prev) => (prev + 1) % announcements.length);
   };
 
   const goToSlide = (index: number) => {
-    setAutoPlay(false);
     setCurrentIndex(index);
   };
 
   const current = announcements[currentIndex];
 
+  // Theater Mode View
+  if (isTheaterMode) {
+    return (
+      <div 
+        className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4"
+        data-testid="theater-mode-backdrop"
+      >
+        <div className="w-full h-full max-w-6xl max-h-screen flex flex-col">
+          {/* Close Button */}
+          <div className="flex justify-end mb-4">
+            <Button
+              size="icon"
+              variant="ghost"
+              onClick={() => setIsTheaterMode(false)}
+              data-testid="button-exit-theater-mode"
+              className="text-white hover:bg-white/10"
+            >
+              <X className="w-6 h-6" />
+            </Button>
+          </div>
+
+          {/* Main Content */}
+          <div className="flex-1 flex flex-col gap-6">
+            {/* Video */}
+            {current.type === "video" && (
+              <div className="w-full flex-1 bg-black rounded-lg overflow-hidden">
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src={current.videoUrl}
+                  title={current.title}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  className="w-full h-full"
+                  data-testid="video-announcement-theater"
+                />
+              </div>
+            )}
+
+            {/* Article */}
+            {current.type === "article" && (
+              <div className="w-full flex-1 bg-gradient-to-br from-secondary/20 to-primary/20 rounded-lg flex items-center justify-center p-12 overflow-y-auto">
+                <div className="w-full flex flex-col items-center justify-center">
+                  <FileText className="w-16 h-16 text-secondary mb-6" />
+                  <h3 className="font-semibold text-4xl text-white mb-6 text-center">
+                    {current.title}
+                  </h3>
+                  <p className="text-gray-200 text-lg text-center max-w-3xl leading-relaxed">
+                    {current.articleText}
+                  </p>
+                </div>
+              </div>
+            )}
+
+            {/* Image */}
+            {current.type === "image" && (
+              <div className="w-full flex-1 bg-black rounded-lg overflow-hidden">
+                <img
+                  src={current.imageUrl}
+                  alt={current.title}
+                  className="w-full h-full object-contain"
+                  data-testid="image-announcement-theater"
+                />
+              </div>
+            )}
+
+            {/* Bottom Info and Controls */}
+            <div className="flex flex-col gap-4">
+              <div className="flex items-start justify-between">
+                <div className="flex-1">
+                  <h3 className="text-2xl font-semibold text-white mb-2">{current.title}</h3>
+                  <p className="text-gray-300 mb-1">{current.description}</p>
+                  <p className="text-sm text-gray-400">{current.date}</p>
+                </div>
+                <div className="flex items-center gap-2 ml-4">
+                  {current.type === "video" && (
+                    <div className="bg-secondary/30 px-3 py-1 rounded-full flex items-center gap-2">
+                      <Play className="w-4 h-4 text-secondary" />
+                      <span className="text-xs font-semibold text-white">VIDEO</span>
+                    </div>
+                  )}
+                  {current.type === "article" && (
+                    <div className="bg-secondary/30 px-3 py-1 rounded-full flex items-center gap-2">
+                      <FileText className="w-4 h-4 text-secondary" />
+                      <span className="text-xs font-semibold text-white">ARTICLE</span>
+                    </div>
+                  )}
+                  {current.type === "image" && (
+                    <div className="bg-secondary/30 px-3 py-1 rounded-full flex items-center gap-2">
+                      <Image className="w-4 h-4 text-secondary" />
+                      <span className="text-xs font-semibold text-white">IMAGE</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Navigation */}
+              <div className="flex items-center justify-between gap-4">
+                <Button
+                  size="icon"
+                  variant="outline"
+                  onClick={goToPrevious}
+                  data-testid="button-previous-announcement-theater"
+                  className="border-white/20 hover:bg-white/10 text-white"
+                >
+                  <ChevronLeft className="w-5 h-5" />
+                </Button>
+
+                {/* Slide Indicators */}
+                <div className="flex gap-2 justify-center flex-1">
+                  {announcements.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => goToSlide(index)}
+                      className={`h-2 rounded-full transition-all ${
+                        index === currentIndex
+                          ? "bg-secondary w-8"
+                          : "bg-white/30 w-2 hover:bg-white/50"
+                      }`}
+                      data-testid={`button-slide-theater-${index}`}
+                      aria-label={`Go to slide ${index + 1}`}
+                    />
+                  ))}
+                </div>
+
+                <Button
+                  size="icon"
+                  variant="outline"
+                  onClick={goToNext}
+                  data-testid="button-next-announcement-theater"
+                  className="border-white/20 hover:bg-white/10 text-white"
+                >
+                  <ChevronRight className="w-5 h-5" />
+                </Button>
+              </div>
+
+              <div className="text-center text-sm text-gray-400">
+                {currentIndex + 1} / {announcements.length}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Normal View
   return (
     <section id="announcement" className="py-16 md:py-24 bg-secondary/5">
       <div className="max-w-7xl mx-auto px-6">
@@ -176,6 +311,15 @@ export default function AnnouncementSection() {
                 </>
               )}
             </div>
+
+            {/* Theater Mode Button */}
+            <button
+              onClick={() => setIsTheaterMode(true)}
+              className="absolute bottom-4 left-4 bg-background/80 backdrop-blur-sm hover:bg-background px-3 py-1 rounded-full text-xs font-semibold text-foreground transition-colors"
+              data-testid="button-enter-theater-mode"
+            >
+              Theater Mode
+            </button>
           </div>
 
           {/* Title, Description and Date */}
