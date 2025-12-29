@@ -87,7 +87,6 @@ export default function AnnouncementSection() {
         className="fixed inset-0 z-50 bg-black flex items-center justify-center"
         data-testid="theater-mode-fullscreen"
       >
-        {/* Close Button */}
         <button
           onClick={() => setIsFullscreen(false)}
           className="absolute top-6 right-6 z-60 bg-white/10 hover:bg-white/20 p-2 rounded-full transition-colors"
@@ -97,7 +96,6 @@ export default function AnnouncementSection() {
         </button>
 
         <div className="w-full h-full flex items-center justify-center p-8">
-          {/* Video */}
           {current.type === "video" && (
             <div className="w-full h-full max-w-7xl max-h-screen">
               <iframe
@@ -114,7 +112,6 @@ export default function AnnouncementSection() {
             </div>
           )}
 
-          {/* Article */}
           {current.type === "article" && (
             <div className="max-w-3xl w-full h-full flex flex-col items-center justify-center">
               <div className="bg-gradient-to-br from-secondary/20 to-primary/20 rounded-lg p-16 flex flex-col items-center justify-center h-full">
@@ -129,7 +126,6 @@ export default function AnnouncementSection() {
             </div>
           )}
 
-          {/* Image */}
           {current.type === "image" && (
             <div className="w-full h-full max-w-7xl">
               <img
@@ -147,48 +143,50 @@ export default function AnnouncementSection() {
 
   // Theater-style Normal View
   return (
-    <section id="announcement" className="relative py-24 md:py-32 overflow-hidden bg-black">
-      {/* Theatrical Background with Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-secondary/5" />
+    <section id="announcement" className="relative py-20 md:py-28 overflow-hidden">
+      {/* Gradient Background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/5 to-background" />
       
-      {/* Spotlight Effects */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-secondary/5 rounded-full filter blur-3xl opacity-20 -z-10" />
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-primary/5 rounded-full filter blur-3xl opacity-20 -z-10" />
+      {/* Decorative Elements */}
+      <div className="absolute top-20 left-10 w-60 h-60 bg-secondary/10 rounded-full filter blur-3xl opacity-30" />
+      <div className="absolute bottom-20 right-10 w-60 h-60 bg-primary/10 rounded-full filter blur-3xl opacity-30" />
 
       <div className="relative max-w-7xl mx-auto px-6">
-        {/* Theater Title */}
-        <div className="text-center mb-16">
-          <div className="inline-block mb-4">
-            <div className="flex items-center gap-2 justify-center">
-              <div className="w-12 h-12 border-2 border-secondary/40" />
-              <h2
-                className="font-serif text-4xl md:text-5xl font-semibold text-white tracking-wider"
-                data-testid="text-announcement-title"
-              >
-                ANNOUNCEMENTS
-              </h2>
-              <div className="w-12 h-12 border-2 border-secondary/40" />
-            </div>
+        {/* Premium Title Section */}
+        <div className="text-center mb-20">
+          <div className="inline-flex flex-col items-center gap-4">
+            {/* Decorative Top Line */}
+            <div className="h-1 w-16 bg-gradient-to-r from-transparent via-secondary to-transparent" />
+            
+            {/* Main Title */}
+            <h2
+              className="font-serif text-5xl md:text-6xl font-bold text-foreground tracking-tight"
+              data-testid="text-announcement-title"
+            >
+              Announcements
+            </h2>
+            
+            {/* Decorative Bottom Line */}
+            <div className="h-1 w-24 bg-gradient-to-r from-transparent via-secondary to-transparent" />
           </div>
-          <p className="text-lg text-gray-300 tracking-wide">
-            Experience our latest updates and messages
+          
+          {/* Subtitle */}
+          <p className="text-lg text-muted-foreground mt-6 max-w-2xl mx-auto">
+            Discover our latest updates, stories, and community moments
           </p>
         </div>
 
         <div className="max-w-5xl mx-auto">
-          {/* Main Theater Display */}
-          <div className="relative group">
-            {/* Outer Frame Effect */}
-            <div className="absolute -inset-2 bg-gradient-to-r from-secondary/40 via-primary/40 to-secondary/40 rounded-xl opacity-75 group-hover:opacity-100 transition-opacity blur-xl" />
+          {/* Main Display Card */}
+          <div className="relative group mb-8">
+            {/* Animated Gradient Border */}
+            <div className="absolute -inset-1 bg-gradient-to-r from-secondary/30 via-primary/30 to-secondary/30 rounded-xl opacity-50 group-hover:opacity-100 transition-opacity duration-300 blur-lg" />
             
-            {/* Content Container */}
-            <div className="relative bg-black rounded-lg overflow-hidden border-2 border-secondary/20">
-              {/* Inner Frame Border */}
-              <div className="absolute inset-0 border-8 border-black pointer-events-none z-10" />
-
+            {/* Content Card */}
+            <div className="relative bg-card rounded-xl overflow-hidden border border-secondary/20 shadow-2xl">
               {/* Video */}
               {current.type === "video" && (
-                <div className="aspect-video bg-black flex items-center justify-center overflow-hidden">
+                <div className="aspect-video bg-muted flex items-center justify-center overflow-hidden">
                   <iframe
                     width="100%"
                     height="100%"
@@ -205,13 +203,15 @@ export default function AnnouncementSection() {
 
               {/* Article */}
               {current.type === "article" && (
-                <div className="aspect-video bg-gradient-to-br from-black via-secondary/10 to-black flex items-center justify-center p-12">
-                  <div className="flex flex-col items-center justify-center h-full w-full">
-                    <FileText className="w-16 h-16 text-secondary/80 mb-6" />
-                    <h3 className="font-semibold text-3xl text-white mb-6 text-center">
+                <div className="aspect-video bg-gradient-to-br from-secondary/5 via-background to-primary/5 flex items-center justify-center p-12">
+                  <div className="flex flex-col items-center justify-center h-full w-full text-center">
+                    <div className="mb-6 p-4 rounded-full bg-secondary/10">
+                      <FileText className="w-12 h-12 text-secondary" />
+                    </div>
+                    <h3 className="font-semibold text-3xl text-foreground mb-6">
                       {current.title}
                     </h3>
-                    <p className="text-gray-300 text-center max-w-2xl leading-relaxed text-lg">
+                    <p className="text-muted-foreground max-w-2xl leading-relaxed text-base">
                       {current.articleText}
                     </p>
                   </div>
@@ -220,34 +220,34 @@ export default function AnnouncementSection() {
 
               {/* Image */}
               {current.type === "image" && (
-                <div className="aspect-video bg-black overflow-hidden">
+                <div className="aspect-video bg-muted overflow-hidden">
                   <img
                     src={current.imageUrl}
                     alt={current.title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     data-testid="image-announcement"
                   />
                 </div>
               )}
 
-              {/* Content Type Badge - Theater Style */}
-              <div className="absolute top-6 right-6 bg-black/80 border border-secondary/40 px-4 py-2 rounded-full flex items-center gap-2 backdrop-blur-sm z-20">
+              {/* Content Badge */}
+              <div className="absolute top-5 right-5 bg-background/90 backdrop-blur-md border border-secondary/30 px-4 py-2 rounded-full flex items-center gap-2">
                 {current.type === "video" && (
                   <>
                     <Play className="w-4 h-4 text-secondary" />
-                    <span className="text-xs font-bold text-white tracking-widest">FEATURE</span>
+                    <span className="text-xs font-semibold text-foreground">VIDEO</span>
                   </>
                 )}
                 {current.type === "article" && (
                   <>
                     <FileText className="w-4 h-4 text-secondary" />
-                    <span className="text-xs font-bold text-white tracking-widest">STORY</span>
+                    <span className="text-xs font-semibold text-foreground">ARTICLE</span>
                   </>
                 )}
                 {current.type === "image" && (
                   <>
                     <Image className="w-4 h-4 text-secondary" />
-                    <span className="text-xs font-bold text-white tracking-widest">GALLERY</span>
+                    <span className="text-xs font-semibold text-foreground">IMAGE</span>
                   </>
                 )}
               </div>
@@ -255,7 +255,7 @@ export default function AnnouncementSection() {
               {/* Fullscreen Button */}
               <button
                 onClick={() => setIsFullscreen(true)}
-                className="absolute bottom-6 left-6 bg-secondary/90 hover:bg-secondary text-black px-6 py-2 rounded-full text-sm font-bold tracking-wider transition-all z-20"
+                className="absolute bottom-5 left-5 bg-secondary hover:bg-secondary/90 text-secondary-foreground px-5 py-2 rounded-lg text-xs font-bold transition-all duration-200 hover:shadow-lg"
                 data-testid="button-expand-fullscreen"
               >
                 FULLSCREEN
@@ -263,39 +263,35 @@ export default function AnnouncementSection() {
             </div>
           </div>
 
-          {/* Theater Info Section */}
-          <div className="mt-12 bg-black/40 border border-secondary/20 rounded-lg p-8 backdrop-blur-sm">
-            <div className="flex justify-between items-start gap-8">
-              <div className="flex-1">
-                <h3 className="text-3xl font-bold text-white mb-3 tracking-wide">{current.title}</h3>
-                <p className="text-gray-300 mb-3 text-lg">{current.description}</p>
-                <p className="text-sm text-gray-400 tracking-wider">{current.date}</p>
-              </div>
-            </div>
+          {/* Info Section */}
+          <div className="mb-8 p-8 bg-secondary/5 rounded-xl border border-secondary/20">
+            <h3 className="text-2xl font-bold text-foreground mb-2">{current.title}</h3>
+            <p className="text-muted-foreground mb-3">{current.description}</p>
+            <p className="text-xs text-muted-foreground/70 font-medium tracking-wide">{current.date}</p>
           </div>
 
-          {/* Theater Navigation */}
-          <div className="mt-12 flex items-center justify-between gap-6">
+          {/* Navigation Controls */}
+          <div className="flex items-center justify-center gap-6 mb-6">
             <Button
               size="icon"
               variant="outline"
               onClick={goToPrevious}
               data-testid="button-previous-announcement"
-              className="h-12 w-12 border-secondary/40 hover:bg-secondary/10 text-white rounded-full"
+              className="h-11 w-11 rounded-full border-secondary/30 hover:bg-secondary/10"
             >
-              <ChevronLeft className="w-6 h-6" />
+              <ChevronLeft className="w-5 h-5" />
             </Button>
 
-            {/* Slide Indicators - Theater Style */}
-            <div className="flex gap-3 justify-center flex-1">
+            {/* Slide Indicators */}
+            <div className="flex gap-2 justify-center flex-1">
               {announcements.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => goToSlide(index)}
-                  className={`h-3 rounded-full transition-all ${
+                  className={`h-2 rounded-full transition-all duration-300 ${
                     index === currentIndex
-                      ? "bg-secondary w-10"
-                      : "bg-secondary/30 w-3 hover:bg-secondary/50"
+                      ? "bg-secondary w-8"
+                      : "bg-secondary/20 w-2 hover:bg-secondary/40"
                   }`}
                   data-testid={`button-slide-${index}`}
                   aria-label={`Go to slide ${index + 1}`}
@@ -308,15 +304,15 @@ export default function AnnouncementSection() {
               variant="outline"
               onClick={goToNext}
               data-testid="button-next-announcement"
-              className="h-12 w-12 border-secondary/40 hover:bg-secondary/10 text-white rounded-full"
+              className="h-11 w-11 rounded-full border-secondary/30 hover:bg-secondary/10"
             >
-              <ChevronRight className="w-6 h-6" />
+              <ChevronRight className="w-5 h-5" />
             </Button>
           </div>
 
-          {/* Slide Counter - Theater Style */}
-          <div className="text-center mt-8 text-gray-400 tracking-widest text-sm font-bold">
-            [{currentIndex + 1} / {announcements.length}]
+          {/* Slide Counter */}
+          <div className="text-center text-sm text-muted-foreground/70 font-medium">
+            {currentIndex + 1} of {announcements.length}
           </div>
         </div>
       </div>
