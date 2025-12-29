@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { ChevronLeft, ChevronRight, Play, FileText, Image, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroImage from "@assets/generated_images/church_community_gathering.png";
@@ -62,7 +62,7 @@ const announcements: Announcement[] = [
 
 export default function AnnouncementSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isTheaterMode, setIsTheaterMode] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   const goToPrevious = () => {
     setCurrentIndex((prev) =>
@@ -80,277 +80,222 @@ export default function AnnouncementSection() {
 
   const current = announcements[currentIndex];
 
-  // Theater Mode View
-  if (isTheaterMode) {
+  // Fullscreen Theater Mode
+  if (isFullscreen) {
     return (
       <div 
-        className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4"
-        data-testid="theater-mode-backdrop"
+        className="fixed inset-0 z-50 bg-black flex items-center justify-center"
+        data-testid="theater-mode-fullscreen"
       >
-        <div className="w-full h-full max-w-6xl max-h-screen flex flex-col">
-          {/* Close Button */}
-          <div className="flex justify-end mb-4">
-            <Button
-              size="icon"
-              variant="ghost"
-              onClick={() => setIsTheaterMode(false)}
-              data-testid="button-exit-theater-mode"
-              className="text-white hover:bg-white/10"
-            >
-              <X className="w-6 h-6" />
-            </Button>
-          </div>
+        {/* Close Button */}
+        <button
+          onClick={() => setIsFullscreen(false)}
+          className="absolute top-6 right-6 z-60 bg-white/10 hover:bg-white/20 p-2 rounded-full transition-colors"
+          data-testid="button-close-fullscreen"
+        >
+          <X className="w-6 h-6 text-white" />
+        </button>
 
-          {/* Main Content */}
-          <div className="flex-1 flex flex-col gap-6">
-            {/* Video */}
-            {current.type === "video" && (
-              <div className="w-full flex-1 bg-black rounded-lg overflow-hidden">
-                <iframe
-                  width="100%"
-                  height="100%"
-                  src={current.videoUrl}
-                  title={current.title}
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                  className="w-full h-full"
-                  data-testid="video-announcement-theater"
-                />
-              </div>
-            )}
+        <div className="w-full h-full flex items-center justify-center p-8">
+          {/* Video */}
+          {current.type === "video" && (
+            <div className="w-full h-full max-w-7xl max-h-screen">
+              <iframe
+                width="100%"
+                height="100%"
+                src={current.videoUrl}
+                title={current.title}
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                className="w-full h-full rounded-lg"
+                data-testid="video-fullscreen"
+              />
+            </div>
+          )}
 
-            {/* Article */}
-            {current.type === "article" && (
-              <div className="w-full flex-1 bg-gradient-to-br from-secondary/20 to-primary/20 rounded-lg flex items-center justify-center p-12 overflow-y-auto">
-                <div className="w-full flex flex-col items-center justify-center">
-                  <FileText className="w-16 h-16 text-secondary mb-6" />
-                  <h3 className="font-semibold text-4xl text-white mb-6 text-center">
-                    {current.title}
-                  </h3>
-                  <p className="text-gray-200 text-lg text-center max-w-3xl leading-relaxed">
-                    {current.articleText}
-                  </p>
-                </div>
-              </div>
-            )}
-
-            {/* Image */}
-            {current.type === "image" && (
-              <div className="w-full flex-1 bg-black rounded-lg overflow-hidden">
-                <img
-                  src={current.imageUrl}
-                  alt={current.title}
-                  className="w-full h-full object-contain"
-                  data-testid="image-announcement-theater"
-                />
-              </div>
-            )}
-
-            {/* Bottom Info and Controls */}
-            <div className="flex flex-col gap-4">
-              <div className="flex items-start justify-between">
-                <div className="flex-1">
-                  <h3 className="text-2xl font-semibold text-white mb-2">{current.title}</h3>
-                  <p className="text-gray-300 mb-1">{current.description}</p>
-                  <p className="text-sm text-gray-400">{current.date}</p>
-                </div>
-                <div className="flex items-center gap-2 ml-4">
-                  {current.type === "video" && (
-                    <div className="bg-secondary/30 px-3 py-1 rounded-full flex items-center gap-2">
-                      <Play className="w-4 h-4 text-secondary" />
-                      <span className="text-xs font-semibold text-white">VIDEO</span>
-                    </div>
-                  )}
-                  {current.type === "article" && (
-                    <div className="bg-secondary/30 px-3 py-1 rounded-full flex items-center gap-2">
-                      <FileText className="w-4 h-4 text-secondary" />
-                      <span className="text-xs font-semibold text-white">ARTICLE</span>
-                    </div>
-                  )}
-                  {current.type === "image" && (
-                    <div className="bg-secondary/30 px-3 py-1 rounded-full flex items-center gap-2">
-                      <Image className="w-4 h-4 text-secondary" />
-                      <span className="text-xs font-semibold text-white">IMAGE</span>
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              {/* Navigation */}
-              <div className="flex items-center justify-between gap-4">
-                <Button
-                  size="icon"
-                  variant="outline"
-                  onClick={goToPrevious}
-                  data-testid="button-previous-announcement-theater"
-                  className="border-white/20 hover:bg-white/10 text-white"
-                >
-                  <ChevronLeft className="w-5 h-5" />
-                </Button>
-
-                {/* Slide Indicators */}
-                <div className="flex gap-2 justify-center flex-1">
-                  {announcements.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => goToSlide(index)}
-                      className={`h-2 rounded-full transition-all ${
-                        index === currentIndex
-                          ? "bg-secondary w-8"
-                          : "bg-white/30 w-2 hover:bg-white/50"
-                      }`}
-                      data-testid={`button-slide-theater-${index}`}
-                      aria-label={`Go to slide ${index + 1}`}
-                    />
-                  ))}
-                </div>
-
-                <Button
-                  size="icon"
-                  variant="outline"
-                  onClick={goToNext}
-                  data-testid="button-next-announcement-theater"
-                  className="border-white/20 hover:bg-white/10 text-white"
-                >
-                  <ChevronRight className="w-5 h-5" />
-                </Button>
-              </div>
-
-              <div className="text-center text-sm text-gray-400">
-                {currentIndex + 1} / {announcements.length}
+          {/* Article */}
+          {current.type === "article" && (
+            <div className="max-w-3xl w-full h-full flex flex-col items-center justify-center">
+              <div className="bg-gradient-to-br from-secondary/20 to-primary/20 rounded-lg p-16 flex flex-col items-center justify-center h-full">
+                <FileText className="w-20 h-20 text-secondary mb-8" />
+                <h3 className="font-semibold text-4xl text-white mb-8 text-center">
+                  {current.title}
+                </h3>
+                <p className="text-gray-200 text-lg text-center leading-relaxed">
+                  {current.articleText}
+                </p>
               </div>
             </div>
-          </div>
+          )}
+
+          {/* Image */}
+          {current.type === "image" && (
+            <div className="w-full h-full max-w-7xl">
+              <img
+                src={current.imageUrl}
+                alt={current.title}
+                className="w-full h-full object-contain rounded-lg"
+                data-testid="image-fullscreen"
+              />
+            </div>
+          )}
         </div>
       </div>
     );
   }
 
-  // Normal View
+  // Theater-style Normal View
   return (
-    <section id="announcement" className="py-16 md:py-24 bg-secondary/5">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-12">
-          <h2
-            className="font-serif text-3xl md:text-4xl font-semibold text-foreground mb-4"
-            data-testid="text-announcement-title"
-          >
-            Announcements
-          </h2>
-          <p className="text-lg text-muted-foreground">
-            Watch our latest updates, articles, and community moments
+    <section id="announcement" className="relative py-24 md:py-32 overflow-hidden bg-black">
+      {/* Theatrical Background with Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-secondary/5" />
+      
+      {/* Spotlight Effects */}
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-secondary/5 rounded-full filter blur-3xl opacity-20 -z-10" />
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-primary/5 rounded-full filter blur-3xl opacity-20 -z-10" />
+
+      <div className="relative max-w-7xl mx-auto px-6">
+        {/* Theater Title */}
+        <div className="text-center mb-16">
+          <div className="inline-block mb-4">
+            <div className="flex items-center gap-2 justify-center">
+              <div className="w-12 h-12 border-2 border-secondary/40" />
+              <h2
+                className="font-serif text-4xl md:text-5xl font-semibold text-white tracking-wider"
+                data-testid="text-announcement-title"
+              >
+                ANNOUNCEMENTS
+              </h2>
+              <div className="w-12 h-12 border-2 border-secondary/40" />
+            </div>
+          </div>
+          <p className="text-lg text-gray-300 tracking-wide">
+            Experience our latest updates and messages
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto">
-          {/* Main Carousel Content */}
-          <div className="relative bg-background rounded-lg overflow-hidden shadow-lg mb-6">
-            {/* Video */}
-            {current.type === "video" && (
-              <div className="aspect-video bg-muted flex items-center justify-center">
-                <iframe
-                  width="100%"
-                  height="100%"
-                  src={current.videoUrl}
-                  title={current.title}
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                  className="w-full h-full"
-                  data-testid="video-announcement"
-                />
-              </div>
-            )}
+        <div className="max-w-5xl mx-auto">
+          {/* Main Theater Display */}
+          <div className="relative group">
+            {/* Outer Frame Effect */}
+            <div className="absolute -inset-2 bg-gradient-to-r from-secondary/40 via-primary/40 to-secondary/40 rounded-xl opacity-75 group-hover:opacity-100 transition-opacity blur-xl" />
+            
+            {/* Content Container */}
+            <div className="relative bg-black rounded-lg overflow-hidden border-2 border-secondary/20">
+              {/* Inner Frame Border */}
+              <div className="absolute inset-0 border-8 border-black pointer-events-none z-10" />
 
-            {/* Article */}
-            {current.type === "article" && (
-              <div className="aspect-video bg-muted flex items-center justify-center p-8">
-                <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-secondary/10 to-primary/10 rounded-lg overflow-y-auto">
-                  <FileText className="w-12 h-12 text-secondary mb-4" />
-                  <h3 className="font-semibold text-2xl text-foreground mb-4 text-center">
-                    {current.title}
-                  </h3>
-                  <p className="text-muted-foreground text-center max-w-2xl leading-relaxed">
-                    {current.articleText}
-                  </p>
-                </div>
-              </div>
-            )}
-
-            {/* Image */}
-            {current.type === "image" && (
-              <div className="aspect-video bg-muted overflow-hidden">
-                <img
-                  src={current.imageUrl}
-                  alt={current.title}
-                  className="w-full h-full object-cover"
-                  data-testid="image-announcement"
-                />
-              </div>
-            )}
-
-            {/* Content Badge */}
-            <div className="absolute top-4 right-4 bg-background/80 backdrop-blur-sm px-3 py-1 rounded-full flex items-center gap-2">
+              {/* Video */}
               {current.type === "video" && (
-                <>
-                  <Play className="w-4 h-4 text-secondary" />
-                  <span className="text-xs font-semibold text-foreground">VIDEO</span>
-                </>
+                <div className="aspect-video bg-black flex items-center justify-center overflow-hidden">
+                  <iframe
+                    width="100%"
+                    height="100%"
+                    src={current.videoUrl}
+                    title={current.title}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                    className="w-full h-full"
+                    data-testid="video-announcement"
+                  />
+                </div>
               )}
+
+              {/* Article */}
               {current.type === "article" && (
-                <>
-                  <FileText className="w-4 h-4 text-secondary" />
-                  <span className="text-xs font-semibold text-foreground">ARTICLE</span>
-                </>
+                <div className="aspect-video bg-gradient-to-br from-black via-secondary/10 to-black flex items-center justify-center p-12">
+                  <div className="flex flex-col items-center justify-center h-full w-full">
+                    <FileText className="w-16 h-16 text-secondary/80 mb-6" />
+                    <h3 className="font-semibold text-3xl text-white mb-6 text-center">
+                      {current.title}
+                    </h3>
+                    <p className="text-gray-300 text-center max-w-2xl leading-relaxed text-lg">
+                      {current.articleText}
+                    </p>
+                  </div>
+                </div>
               )}
+
+              {/* Image */}
               {current.type === "image" && (
-                <>
-                  <Image className="w-4 h-4 text-secondary" />
-                  <span className="text-xs font-semibold text-foreground">IMAGE</span>
-                </>
+                <div className="aspect-video bg-black overflow-hidden">
+                  <img
+                    src={current.imageUrl}
+                    alt={current.title}
+                    className="w-full h-full object-cover"
+                    data-testid="image-announcement"
+                  />
+                </div>
               )}
+
+              {/* Content Type Badge - Theater Style */}
+              <div className="absolute top-6 right-6 bg-black/80 border border-secondary/40 px-4 py-2 rounded-full flex items-center gap-2 backdrop-blur-sm z-20">
+                {current.type === "video" && (
+                  <>
+                    <Play className="w-4 h-4 text-secondary" />
+                    <span className="text-xs font-bold text-white tracking-widest">FEATURE</span>
+                  </>
+                )}
+                {current.type === "article" && (
+                  <>
+                    <FileText className="w-4 h-4 text-secondary" />
+                    <span className="text-xs font-bold text-white tracking-widest">STORY</span>
+                  </>
+                )}
+                {current.type === "image" && (
+                  <>
+                    <Image className="w-4 h-4 text-secondary" />
+                    <span className="text-xs font-bold text-white tracking-widest">GALLERY</span>
+                  </>
+                )}
+              </div>
+
+              {/* Fullscreen Button */}
+              <button
+                onClick={() => setIsFullscreen(true)}
+                className="absolute bottom-6 left-6 bg-secondary/90 hover:bg-secondary text-black px-6 py-2 rounded-full text-sm font-bold tracking-wider transition-all z-20"
+                data-testid="button-expand-fullscreen"
+              >
+                FULLSCREEN
+              </button>
             </div>
-
-            {/* Theater Mode Button */}
-            <button
-              onClick={() => setIsTheaterMode(true)}
-              className="absolute bottom-4 left-4 bg-background/80 backdrop-blur-sm hover:bg-background px-3 py-1 rounded-full text-xs font-semibold text-foreground transition-colors"
-              data-testid="button-enter-theater-mode"
-            >
-              Theater Mode
-            </button>
           </div>
 
-          {/* Title, Description and Date */}
-          <div className="mb-6">
-            <h3 className="text-2xl font-semibold text-foreground mb-2">{current.title}</h3>
-            <p className="text-muted-foreground mb-2">{current.description}</p>
-            <p className="text-sm text-muted-foreground">{current.date}</p>
+          {/* Theater Info Section */}
+          <div className="mt-12 bg-black/40 border border-secondary/20 rounded-lg p-8 backdrop-blur-sm">
+            <div className="flex justify-between items-start gap-8">
+              <div className="flex-1">
+                <h3 className="text-3xl font-bold text-white mb-3 tracking-wide">{current.title}</h3>
+                <p className="text-gray-300 mb-3 text-lg">{current.description}</p>
+                <p className="text-sm text-gray-400 tracking-wider">{current.date}</p>
+              </div>
+            </div>
           </div>
 
-          {/* Navigation Controls */}
-          <div className="flex items-center justify-between gap-4">
+          {/* Theater Navigation */}
+          <div className="mt-12 flex items-center justify-between gap-6">
             <Button
               size="icon"
               variant="outline"
               onClick={goToPrevious}
               data-testid="button-previous-announcement"
-              className="h-10 w-10"
+              className="h-12 w-12 border-secondary/40 hover:bg-secondary/10 text-white rounded-full"
             >
-              <ChevronLeft className="w-5 h-5" />
+              <ChevronLeft className="w-6 h-6" />
             </Button>
 
-            {/* Slide Indicators */}
-            <div className="flex gap-2 justify-center flex-1">
+            {/* Slide Indicators - Theater Style */}
+            <div className="flex gap-3 justify-center flex-1">
               {announcements.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => goToSlide(index)}
-                  className={`h-2 rounded-full transition-all ${
+                  className={`h-3 rounded-full transition-all ${
                     index === currentIndex
-                      ? "bg-secondary w-8"
-                      : "bg-secondary/30 w-2 hover-elevate"
+                      ? "bg-secondary w-10"
+                      : "bg-secondary/30 w-3 hover:bg-secondary/50"
                   }`}
                   data-testid={`button-slide-${index}`}
                   aria-label={`Go to slide ${index + 1}`}
@@ -363,15 +308,15 @@ export default function AnnouncementSection() {
               variant="outline"
               onClick={goToNext}
               data-testid="button-next-announcement"
-              className="h-10 w-10"
+              className="h-12 w-12 border-secondary/40 hover:bg-secondary/10 text-white rounded-full"
             >
-              <ChevronRight className="w-5 h-5" />
+              <ChevronRight className="w-6 h-6" />
             </Button>
           </div>
 
-          {/* Slide Counter */}
-          <div className="text-center mt-4 text-sm text-muted-foreground">
-            {currentIndex + 1} / {announcements.length}
+          {/* Slide Counter - Theater Style */}
+          <div className="text-center mt-8 text-gray-400 tracking-widest text-sm font-bold">
+            [{currentIndex + 1} / {announcements.length}]
           </div>
         </div>
       </div>
