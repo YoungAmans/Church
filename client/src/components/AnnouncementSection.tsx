@@ -64,17 +64,20 @@ const announcements: Announcement[] = [
 interface AnnouncementSectionProps {
   isFullscreen?: boolean;
   onClose?: () => void;
+  watchOnlineVideoUrl?: string;
 }
 
-export default function AnnouncementSection({ isFullscreen: externalFullscreen, onClose }: AnnouncementSectionProps) {
+export default function AnnouncementSection({ isFullscreen: externalFullscreen, onClose, watchOnlineVideoUrl }: AnnouncementSectionProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [showZoomAnimation, setShowZoomAnimation] = useState(false);
+  const [isWatchOnlineMode, setIsWatchOnlineMode] = useState(false);
 
   useEffect(() => {
     if (externalFullscreen) {
       setShowZoomAnimation(true);
       setIsFullscreen(true);
+      setIsWatchOnlineMode(true);
     }
   }, [externalFullscreen]);
 
@@ -117,6 +120,7 @@ export default function AnnouncementSection({ isFullscreen: externalFullscreen, 
           onClick={() => {
             setIsFullscreen(false);
             setShowZoomAnimation(false);
+            setIsWatchOnlineMode(false);
             onClose?.();
           }}
           className="absolute top-6 right-6 z-60 bg-white/10 hover:bg-white/20 p-2 rounded-full transition-colors"
@@ -126,7 +130,21 @@ export default function AnnouncementSection({ isFullscreen: externalFullscreen, 
         </button>
 
         <div className="w-full h-full flex items-center justify-center p-8">
-          {current.type === "video" && (
+          {isWatchOnlineMode && watchOnlineVideoUrl ? (
+            <div className="w-full h-full max-w-7xl max-h-screen">
+              <iframe
+                width="100%"
+                height="100%"
+                src={watchOnlineVideoUrl}
+                title="Watch Online"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                className="w-full h-full rounded-lg"
+                data-testid="video-fullscreen"
+              />
+            </div>
+          ) : current.type === "video" && (
             <div className="w-full h-full max-w-7xl max-h-screen">
               <iframe
                 width="100%"

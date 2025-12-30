@@ -14,6 +14,7 @@ import { useState, useEffect } from "react";
 export default function Home() {
   const [isDark, setIsDark] = useState(false);
   const [isAnnouncementFullscreen, setIsAnnouncementFullscreen] = useState(false);
+  const [watchOnlineVideoUrl] = useState("https://www.youtube.com/embed/QIjIvvHGJ9E?start=15&autoplay=1");
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
@@ -39,7 +40,7 @@ export default function Home() {
       <Header isDark={isDark} onToggleTheme={toggleTheme} />
       <main>
         <HeroSection onWatchOnline={() => setIsAnnouncementFullscreen(true)} />
-        <AnnouncementSection isFullscreen={isAnnouncementFullscreen} onClose={() => setIsAnnouncementFullscreen(false)} />
+        <AnnouncementSection isFullscreen={isAnnouncementFullscreen} onClose={() => setIsAnnouncementFullscreen(false)} watchOnlineVideoUrl={watchOnlineVideoUrl} />
         <AboutSection />
         <ServiceTimesSection />
         <MinistriesSection />
