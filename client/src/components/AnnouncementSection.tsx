@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, Play, FileText, Image, X } from "lucide-react";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import heroImage from "@assets/generated_images/church_community_gathering.png";
 import communityImage from "@assets/generated_images/two_people_sharing_biblical_learnings_with_bible.png";
@@ -60,9 +61,22 @@ const announcements: Announcement[] = [
   },
 ];
 
-export default function AnnouncementSection() {
+interface AnnouncementSectionProps {
+  isFullscreen?: boolean;
+  onClose?: () => void;
+}
+
+export default function AnnouncementSection({ isFullscreen: externalFullscreen, onClose }: AnnouncementSectionProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [showZoomAnimation, setShowZoomAnimation] = useState(false);
+
+  useEffect(() => {
+    if (externalFullscreen) {
+      setShowZoomAnimation(true);
+      setIsFullscreen(true);
+    }
+  }, [externalFullscreen]);
 
   const goToPrevious = () => {
     setCurrentIndex((prev) =>
@@ -83,12 +97,19 @@ export default function AnnouncementSection() {
   // Fullscreen Theater Mode
   if (isFullscreen) {
     return (
-      <div 
+      <motion.div 
         className="fixed inset-0 z-50 bg-black flex items-center justify-center"
         data-testid="theater-mode-fullscreen"
+        initial={showZoomAnimation ? { scale: 0.5, opacity: 0 } : { scale: 1, opacity: 1 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
       >
         <button
-          onClick={() => setIsFullscreen(false)}
+          onClick={() => {
+            setIsFullscreen(false);
+            setShowZoomAnimation(false);
+            onClose?.();
+          }}
           className="absolute top-6 right-6 z-60 bg-white/10 hover:bg-white/20 p-2 rounded-full transition-colors"
           data-testid="button-close-fullscreen"
         >
@@ -137,7 +158,7 @@ export default function AnnouncementSection() {
             </div>
           )}
         </div>
-      </div>
+      </motion.div>
     );
   }
 

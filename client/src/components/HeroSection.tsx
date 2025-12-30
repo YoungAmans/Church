@@ -2,7 +2,11 @@ import { Button } from "@/components/ui/button";
 import { ChevronDown, Play } from "lucide-react";
 import heroImage from "@assets/generated_images/modern_church_interior_hero.png";
 
-export default function HeroSection() {
+interface HeroSectionProps {
+  onWatchOnline?: () => void;
+}
+
+export default function HeroSection({ onWatchOnline }: HeroSectionProps) {
   const scrollToAbout = () => {
     const element = document.querySelector("#about");
     if (element) {
@@ -46,6 +50,7 @@ export default function HeroSection() {
             variant="outline"
             className="backdrop-blur-md bg-white/10 border-white/30 text-white px-8"
             data-testid="button-watch-online"
+            onClick={onWatchOnline}
           >
             <Play className="w-4 h-4 mr-2" />
             Watch Online

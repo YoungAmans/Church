@@ -13,6 +13,7 @@ import { useState, useEffect } from "react";
 
 export default function Home() {
   const [isDark, setIsDark] = useState(false);
+  const [isAnnouncementFullscreen, setIsAnnouncementFullscreen] = useState(false);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
@@ -37,8 +38,8 @@ export default function Home() {
     <div className="min-h-screen bg-background">
       <Header isDark={isDark} onToggleTheme={toggleTheme} />
       <main>
-        <HeroSection />
-        <AnnouncementSection />
+        <HeroSection onWatchOnline={() => setIsAnnouncementFullscreen(true)} />
+        <AnnouncementSection isFullscreen={isAnnouncementFullscreen} onClose={() => setIsAnnouncementFullscreen(false)} />
         <AboutSection />
         <ServiceTimesSection />
         <MinistriesSection />
