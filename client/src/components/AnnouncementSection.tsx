@@ -24,7 +24,7 @@ const announcements: Announcement[] = [
     type: "video",
     title: "Sunday Service Highlights",
     description: "Watch our latest Sunday service message",
-    videoUrl: "https://www.youtube.com/embed/2CiMBKAeQzY?autoplay=1",
+    videoUrl: "https://www.youtube.com/embed/2CiMBKAeQzY",
     date: "Dec 29, 2024",
   },
   {

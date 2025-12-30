@@ -6,6 +6,8 @@ interface HeroSectionProps {
   onWatchOnline?: () => void;
 }
 
+const WATCH_ONLINE_VIDEO_URL = "https://www.youtube.com/embed/QIjIvvHGJ9E?start=15&autoplay=1";
+
 export default function HeroSection({ onWatchOnline }: HeroSectionProps) {
   const scrollToAbout = () => {
     const element = document.querySelector("#about");
