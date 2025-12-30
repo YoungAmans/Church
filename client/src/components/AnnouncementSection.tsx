@@ -92,6 +92,15 @@ export default function AnnouncementSection({ isFullscreen: externalFullscreen, 
     setCurrentIndex(index);
   };
 
+  const getAutoplayUrl = (url: string | undefined): string | undefined => {
+    if (!url) return undefined;
+    // Add autoplay=1 parameter to YouTube embed URLs
+    if (url.includes("youtube.com/embed/")) {
+      return url.includes("?") ? `${url}&autoplay=1` : `${url}?autoplay=1`;
+    }
+    return url;
+  };
+
   const current = announcements[currentIndex];
 
   // Fullscreen Theater Mode
@@ -122,7 +131,7 @@ export default function AnnouncementSection({ isFullscreen: externalFullscreen, 
               <iframe
                 width="100%"
                 height="100%"
-                src={current.videoUrl}
+                src={getAutoplayUrl(current.videoUrl)}
                 title={current.title}
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
