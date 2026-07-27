@@ -11,8 +11,17 @@ const WATCH_ONLINE_VIDEO_URL = "https://www.youtube.com/embed/QIjIvvHGJ9E?start=
 export default function HeroSection({ onWatchOnline }: HeroSectionProps) {
   const scrollToAbout = () => {
     const element = document.querySelector("#about");
+
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      const headerOffset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition =
+        elementPosition + window.scrollY - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
     }
   };
 
@@ -30,7 +39,7 @@ export default function HeroSection({ onWatchOnline }: HeroSectionProps) {
           className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight"
           data-testid="text-hero-title"
         >
-          Hope Church
+          Faith Church
         </h1>
         <p 
           className="text-lg sm:text-xl md:text-2xl text-white/90 mb-10 max-w-2xl mx-auto leading-relaxed"
@@ -40,13 +49,13 @@ export default function HeroSection({ onWatchOnline }: HeroSectionProps) {
           <span className="text-base sm:text-lg">Love Neighbours • Make Disciples • Plant Churches</span>
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Button 
-            size="lg" 
-            className="bg-primary hover:bg-primary/90 text-white px-8"
-            data-testid="button-join-us"
-          >
-            Join Us This Sunday
-          </Button>
+        <Button 
+          size="lg" 
+          className="bg-primary hover:bg-primary/90 text-white px-8"
+          onClick={scrollToAbout}
+        >
+          Join Us This Sunday
+        </Button>
           <Button 
             size="lg" 
             variant="outline"

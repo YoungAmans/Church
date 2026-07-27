@@ -20,26 +20,35 @@ const navLinks = [
 
 export default function Header({ isDark = false, onToggleTheme }: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false);
+  
+const handleNavClick = (href: string) => {
+  setIsOpen(false);
 
-  const handleNavClick = (href: string) => {
-    setIsOpen(false);
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  const element = document.querySelector(href);
+
+  if (element) {
+    const headerOffset = 80;
+    const elementPosition = element.getBoundingClientRect().top;
+    const offsetPosition =
+      elementPosition + window.scrollY - headerOffset;
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: "smooth",
+    });
+  }
+};
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-secondary/30 border-b-2">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b-2 border-secondary/30">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center justify-between gap-4 h-16">
-          <a 
-            href="#" 
-            className="flex items-center gap-3"
-            data-testid="link-logo"
-          >
-            <span className="font-serif text-lg font-bold text-foreground">Hope Philippines Church </span>
-          </a>
+            <button
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              className="flex items-center gap-3"
+            >
+            <span className="font-serif text-lg font-bold text-foreground">Faith Church </span>
+          </button>
 
           <nav className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
@@ -47,7 +56,7 @@ export default function Header({ isDark = false, onToggleTheme }: HeaderProps) {
                 key={link.label}
                 variant="ghost"
                 onClick={() => handleNavClick(link.href)}
-                className="transition-colors duration-200"
+                className="transition-colors duration-200 focus:outline-none focus:ring-0 active:bg-transparent"
                 data-testid={`link-nav-${link.label.toLowerCase()}`}
               >
                 {link.label}

@@ -17,7 +17,7 @@ export default function AboutSection() {
               className="font-serif text-3xl md:text-4xl font-semibold text-foreground mb-6"
               data-testid="text-about-title"
             >
-              Welcome to Hope Church
+              Welcome to Faith Church
             </h2>
             
             <div className="mb-8 p-6 bg-secondary/5 rounded-lg border border-secondary/20">
